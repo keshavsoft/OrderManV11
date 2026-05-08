@@ -1,0 +1,3 @@
+{
+    "deleteEndPoint": "/Api/V3/ItemsTable/DeleteByColumn"
+}
