@@ -1,6 +1,6 @@
 import { hookAllListeners } from "./AddListeners/start.js";
 import { formSearchParamsFunc } from "./formSearchParamsFunc.js";
-import { initTable, initVertical } from "../../../../../../../KSTableAi/V28/entry.js";
+// import { initTable, initVertical } from "../../../../../../../KSTableAi/V28/entry.js";
 
 const runAfterDomLoad = () => {
     buildUi().then();
@@ -152,7 +152,33 @@ const buildUi = async () => {
 
     await initVertical(config);
 
-    await initTable(configForSubTable);
+    await callKSTable(configForSubTable);
+};
+
+const callKSTable = async (config) => {
+    if (window.KSTable?.initTableOnly) {
+        console.log("table loaded from window.KSTable");
+
+        return window.KSTable.initTable(config); // extension or CDN
+    } else {
+        // const { initTableOnly } = await import("../../../../../../../../KSTableAi/V28/entry.js"); // local
+        const { initTable } = await import("https://keshavsoft.github.io/KsJsTableAi/Public/kstable.js"); // local
+
+        return initTable(config);
+    };
+};
+
+const initVertical = async (config) => {
+    if (window.KSTable?.initTableOnly) {
+        console.log("table loaded from window.KSTable");
+
+        return window.KSTable.initVertical(config); // extension or CDN
+    } else {
+        // const { initTableOnly } = await import("../../../../../../../../KSTableAi/V28/entry.js"); // local
+        const { initVertical } = await import("https://keshavsoft.github.io/KsJsTableAi/Public/kstable.js"); // local
+
+        return initVertical(config);
+    };
 };
 
 export { runAfterDomLoad };

@@ -137,7 +137,9 @@ const callKSTable = async (config) => {
 
         return window.KSTable.initTableOnly(config); // extension or CDN
     } else {
-        const { initVertical } = await import("../../../../../../../../../KSTableAi/V29/entry.js"); // local
+        console.log("table loaded from LOCAL js");
+
+        const { initVertical } = await import("../../../../../../../KSTableAi/V30/entry.js"); // local
         return initVertical(config);
     }
 };
