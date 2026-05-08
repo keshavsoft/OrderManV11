@@ -11,10 +11,12 @@ import startServer from "./server.js";
 import { router as routerFromFromTally } from "./FromTally/routes.js";
 import { router as routerFromApi } from "./Api/routes.js";
 import { router as routerFromV8 } from "./V8/routes.js";
+import { router as routerFromToTally } from "./ToTally/routes.js";
 
 loadConfig();
 
-const app = express();
+const app = express()
+app.use("/ToTally", routerFromToTally);;
 
 app.use("/Api", routerFromApi);
 app.use("/FromTally", routerFromFromTally);
