@@ -96,7 +96,9 @@ const callKSTable = async (config) => {
 
         return window.KSTable.initTableOnly(config); // extension or CDN
     } else {
-        const { initTableOnly } = await import("../../../../../../../../KSTableAi/V28/entry.js"); // local
+        // const { initTableOnly } = await import("../../../../../../../../KSTableAi/V28/entry.js"); // local
+        const { initTableOnly } = await import("https://keshavsoft.github.io/KsJsTableAi/Public/kstable.js"); // local
+
         return initTableOnly(config);
     };
 };
