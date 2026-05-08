@@ -1,4 +1,3 @@
-import { initVertical } from "../../../../../../../KSTableAi/V28/entry.js";
 import { initHeader } from "../../../../../../../header/v1/initHeader.js";
 
 const config = {
@@ -49,10 +48,14 @@ const config = {
             columnName: "LedgerName", isRequired: true,
             tableFooterDataListShow: true, dataListSource: "ledgers.LedgerName"
         },
-        { columnName: "InvoiceDate", isRequired: false, defaultValue: "20260327" },
+        {
+            columnName: "InvoiceDate", isRequired: false,
+            isDate: true, defaultToday: true, isReadonly: false,
+            autoFocus: false, isSearch: false
+        },
         { columnName: "pk", isPrimaryKey: true, isVisible: false },
-        { columnName: "PartyGSTIN", isRequired: false },
-        { columnName: "GstRegistrationType", isRequired: false }
+        { columnName: "PartyGSTIN", isRequired: false, isSearch: false },
+        { columnName: "GstRegistrationType", isRequired: false, isReadonly: true }
     ],
     uiClasses: {
         form: {
@@ -126,7 +129,6 @@ const runAfterDomLoad = async () => {
     initHeader(headerConfig);
 
     await callKSTable(config);
-    // initVertical(config).then();
 };
 
 const callKSTable = async (config) => {
@@ -135,7 +137,7 @@ const callKSTable = async (config) => {
 
         return window.KSTable.initTableOnly(config); // extension or CDN
     } else {
-        const { initVertical } = await import("../../../../../../../../../KSTableAi/V25/entry.js"); // local
+        const { initVertical } = await import("../../../../../../../../../KSTableAi/V29/entry.js"); // local
         return initVertical(config);
     }
 };
