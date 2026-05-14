@@ -1,4 +1,4 @@
-import { initHeader } from "../../../../../../../header/v1/initHeader.js";
+// import { initHeader } from "../../../../../../../header/v1/initHeader.js";
 
 const config = {
     containerId: 'kSTableContainer',
@@ -126,21 +126,35 @@ const runAfterDomLoad = async () => {
         ]
     };
 
-    initHeader(headerConfig);
+    // initHeader(headerConfig);
+    await callForHeader(headerConfig);
 
     await callKSTable(config);
 };
 
 const callKSTable = async (config) => {
-    if (window.KSTable?.initTableOnly) {
+    if (window.KSTable?.initVertical) {
         console.log("table loaded from window.KSTable");
 
-        return window.KSTable.initTableOnly(config); // extension or CDN
+        return window.KSTable.initVertical(config); // extension or CDN
     } else {
         console.log("table loaded from LOCAL js");
 
         const { initVertical } = await import("../../../../../../../KSTableAi/V32/entry.js"); // local
         return initVertical(config);
+    }
+};
+
+const callForHeader = async (config) => {
+    if (window.KSHeader?.initHeader) {
+        console.log("table loaded from window.KSTable");
+
+        return window.KSHeader.initHeader(config); // extension or CDN
+    } else {
+        console.log("table loaded from LOCAL js");
+
+        const { initHeader } = await import("../../../../../../../header/v1/initHeader.js"); // local
+        return initHeader(config);
     }
 };
 
