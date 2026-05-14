@@ -139,7 +139,7 @@ const callKSTable = async (config) => {
     } else {
         console.log("table loaded from LOCAL js");
 
-        const { initVertical } = await import("../../../../../../../KSTableAi/V31/entry.js"); // local
+        const { initVertical } = await import("../../../../../../../KSTableAi/V32/entry.js"); // local
         return initVertical(config);
     }
 };

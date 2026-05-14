@@ -33,7 +33,7 @@ const buildHeader = () => {
                     "M8 12h8",
                     "M8 16h8"
                 ],
-                href: "../../Transactions/V6/Create/index.html"
+                href: "../../Transactions/V7/Create/index.html"
             },
             {
                 text: "FromTally",
